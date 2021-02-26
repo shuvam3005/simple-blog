@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
 
 export default combineReducers({
-	replaceMe: 'replaceMeToo', //replace this line
+	replaceMe: 'to be replaced', //replace this line
 });
