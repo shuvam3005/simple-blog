@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { createPost } from '../../store/actions';
 import Form from '../../components/Form';
 import Field from '../../components/Field';
 
@@ -9,23 +11,28 @@ class PostCreate extends Component {
 		description: '',
 	};
 	onTitleChange = (title) => {
-		console.log('hello');
 		this.setState({ title });
 	};
 
 	onImageChange = (image) => {
-		console.log('img');
 		this.setState({ image });
 	};
 
 	onDescriptionChange = (description) => {
-		console.log('desc');
 		this.setState({ description });
+	};
+
+	onFormSubmit = () => {
+		this.props.createPost({
+			title: this.state.title,
+			image: this.state.image,
+			description: this.state.description,
+		});
 	};
 
 	render() {
 		return (
-			<Form>
+			<Form onSubmit={this.onFormSubmit}>
 				<Field
 					type="text"
 					label="Title"
@@ -49,4 +56,8 @@ class PostCreate extends Component {
 	}
 }
 
-export default PostCreate;
+const mapDispatchToProps = {
+	createPost,
+};
+
+export default connect(null, mapDispatchToProps)(PostCreate);
